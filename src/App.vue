@@ -16,8 +16,8 @@
           <span>
             <button class="inc" @click="incQt(i)">+</button>
             <span v-if="item.qt > 0">{{item.qt}}</span>
-            
-            <button class="dec" @click="decQt(todo.qt)">-</button>
+            <span v-else>{{deleteItem(i)}}</span>
+            <button class="dec" @click="decQt(i)">-</button>
           </span>
           <button class="delete-button" @click="deleteItem(i)" >delete</button>
         </li>
@@ -33,8 +33,8 @@ export default {
     return {
       newItem: "",
       listItem: [
-        {text: "Complete Project", id: 0, qt:1 },
-        {text: "Upload to Git", id:1, qt: 1}
+        {text: "Ketchup", id: 0, qt:1 },
+        {text: "ToothBrush", id:1, qt: 1}
       ]
     }
    },
@@ -51,10 +51,10 @@ export default {
       this.listItem.splice(i,1)
     },
     incQt(i) {
-      
+      this.$set(this.listItem[i].qt++)
     },
     decQt(i) {
-     
+      this.$set(this.listItem[i].qt--)
     }
    }
 }
